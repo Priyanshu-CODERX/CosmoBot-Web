@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CosmoBot</title>
+
+    <!-- Styles -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        /*font-family: 'New Tegomin', serif;*/
+        /*font-family: 'Freckle Face', cursive;*/
+        font-family: "Original Surfer", cursive;
+      }
+      body {
+        /*background-color: #F57F17;*/
+        background-image: url("./static/bg1.jpg");
+        background-size: 100% 200vh;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .navbar {
+        padding: 10px;
+        background-color: #212121;
+        text-align: center;
+        -webkit-box-shadow: 0 8px 6px -6px #212121;
+        -moz-box-shadow: 0 8px 6px -6px #212121;
+        box-shadow: 0 8px 6px -6px #212121;
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+      }
+
+      .note{
+        z-index: 100;
+        color: white;
+        font-weight: 700;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 4rem;
+      }
+
+      .main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .input {
+        width: 100%;
+        /*height: 100%;*/
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      input {
+        outline: none;
+        font-size: 2rem;
+        border-radius: 1rem;
+        padding: 10px;
+        width: 60%;
+        z-index: 100;
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+          rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+          rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+      }
+
+      button {
+        background-color: #212121;
+        cursor: pointer;
+        color: #fff;
+        font-size: 2rem;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 1rem;
+        z-index: 100;
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+          rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+          rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+      }
+
+      .output {
+        z-index: 100;
+        background-color: yellow;
+        font-size: 30px;
+        width: 40%;
+        height: auto;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+          rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+          rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+        padding: 10px;
+      }
+
+      .form-main {
+        width: 100%;
+      }
+
+      /*Cursor Circle*/
+      .circle {
+        position: absolute;
+        border: solid 1px #212121;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border-width: 2px;
+        -webkit-animation: randomBGColor 5s infinite;
+      }
+
+      .border-circle-1{
+      	position: absolute;
+        border: solid #42A5F5;
+        /*background-color: #fff; */
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border-width: 10px;
+        z-index: 90;
+        top: 100px;
+        left: 100px;
+
+      }
+	.border-circle-2{
+      	position: absolute;
+        border: solid #FF5722;
+        /*background-color: #fff; */
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border-width: 10px;
+        z-index: 90;
+        top: 60%;
+        left: 80%;
+
+      }
+      .border-circle-3{
+      	position: absolute;
+        border: solid #009688;
+        /*background-color: #fff; */
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border-width: 10px;
+        z-index: 90;
+        top: 30%;
+        left: 50%;
+
+      }
+      /*Animation*/
+      /*Circle BG Color Change*/
+      @keyframes randomBGColor {
+        15% {
+          background-color: #42a5f5;
+        }
+        30% {
+          background-color: #009688;
+        }
+        45% {
+          background-color: #ec407a;
+        }
+        60% {
+          background-color: #ffeb3b;
+        }
+        75% {
+          background-color: #f44336;
+        }
+      }
+
+      @media screen and (max-width: 720px) {
+        .input {
+          width: 100%;
+          /*height: 100%;*/
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .logo {
+          font-size: 20px;
+        }
+
+        input,
+        button {
+          font-size: 10px;
+        }
+
+        .output {
+          font-size: 10px;
+        }
+      }
+    </style>
+
+  <link href="./static/logo1.ico" rel="icon">
+  </head>
+  <body>
+    <header class="container">
+      <nav class="navbar">
+        <h1 class="logo">CosmoBot</h1>
+        <p class="note">NOTE: Currently this ChatBot is in BETA mode</p>
+      </nav>
+    </header>
+    <span id="circle" class="circle"></span>
+    <!-- <span id="border-circle-1" class="border-circle-1"></span>
+    <span id="border-circle-1" class="border-circle-2"></span>
+    <span id="border-circle-1" class="border-circle-3"></span> -->
+    <section class="main">
+      <form action="/" method='POST' class="form-main">
+        <div class="input">
+          <input
+            autocomplete="off"
+            name="doubt"
+            type="text"
+            placeholder="Ask your doubt"
+          />
+          <button class="btn" type="submit">Ask</button>
+        </div>
+      </form>
+      <div class="output">{{doubt_input}}</div>
+    </section>
+
+    <!-- Script -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      jQuery(document).ready(function () {
+        var mouseX = 0,
+          mouseY = 0;
+        var xp = 0,
+          yp = 0;
+
+        $(document).mousemove(function (e) {
+          mouseX = e.pageX - 100;
+          mouseY = e.pageY - 100;
+        });
+
+        setInterval(function () {
+          xp += (mouseX - xp) / 6;
+          yp += (mouseY - yp) / 6;
+          $("#circle").css({ left: xp + "px", top: yp + "px" });
+        }, 20);
+      });
+    </script>
+  </body>
+</html>
